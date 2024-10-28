@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Card from "./components/card";
+
 import MainWeather from "./components/MainWeather";
 import FiveDays from "./components/FiveDays";
 import Highlights from "./components/Highlights";
