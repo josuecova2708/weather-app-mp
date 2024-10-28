@@ -1,9 +1,8 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
-import Card from './Card'
-import axios from 'axios'
 import { WeatherContext } from './WeatherContext'
 import { fetchDataDays } from '@/fetchs/fetchDataDays'
+import Cardd from './Cardd'
 
 export default function FiveDays() {
     const [days, setDays] = useState([])
@@ -64,7 +63,7 @@ export default function FiveDays() {
                 <div className="container-cards max-w-96 md:max-w-full flex justify-center flex-wrap gap-4 mt-6 ">
                     {dailyData.map((day, index) =>
                     
-                      <Card key={index}
+                      <Cardd key={index}
                         date={day.date}
                      temp_min={day.temp_min}
                      temp_max={day.temp_max}
