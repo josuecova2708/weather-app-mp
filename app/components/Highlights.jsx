@@ -4,6 +4,9 @@ import { useContext } from 'react'
 import { WeatherContext } from './WeatherContext';
 export default function Highlights() {
   const { todayWeather, loading } = useContext(WeatherContext);
+  const { degrees } = useContext(WeatherContext)
+  const { setDegrees } = useContext(WeatherContext)
+
   const progress = todayWeather?.main?.humidity
   const getWindDirection = (degrees) => {
     if (degrees >= 337.5 || degrees < 22.5) return "N"
@@ -40,7 +43,7 @@ export default function Highlights() {
         <div className="w-72 h-44 bg-slate-500 bg-opacity-30 flex flex-col items-center gap-2 py-2 md:mx-auto ">
           <h2 className="text-lg">Wind Status</h2>
           <h3 className="text-7xl">
-            <span className="font-semibold">{todayWeather?.wind?.speed}</span><span className="text-5xl font-thin">ms</span>
+            <span className="font-semibold">{!degrees?todayWeather?.wind?.speed:(todayWeather?.wind?.speed*2.237).toFixed(2)}</span><span className="text-5xl font-thin">{degrees?"mph":"ms"}</span>
           </h3>
           <div className="flex gap-4 ">
             <figure className={`size-8 bg-gray-200 bg-opacity-10 rounded-full flex`} style={{ transform: `rotate(${rotation}deg)` }} >
@@ -63,7 +66,7 @@ export default function Highlights() {
         <div className="w-72 h-36 bg-slate-500 bg-opacity-30 text-center pt-3 flex flex-col gap-4 md:mx-auto">
           <h2 className="text-lg">Visibility</h2>
           <h3 className="text-7xl">
-            <span className="font-semibold">{(todayWeather?.visibility / 1000).toFixed(2)}</span><span className="text-5xl font-thin">km</span>
+            <span className="font-semibold">{ !degrees?(todayWeather?.visibility / 1000).toFixed(2):((todayWeather?.visibility / 1000).toFixed(2)/1.609).toFixed(2)}</span><span className="text-5xl font-thin">{degrees?"miles":"Km"}</span>
           </h3>
         </div>
 

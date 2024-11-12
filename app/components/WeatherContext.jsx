@@ -10,6 +10,7 @@ export const WeatherProvider = ({ children }) => {
   const [todayWeather, setTodayWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [city, setCity] = useState("Santo Domingo"); 
+  const [degrees, setDegrees] = useState(false)
 
   
   const fetchData = async () => {
@@ -30,7 +31,7 @@ export const WeatherProvider = ({ children }) => {
       });
   }, [city]); 
   return (
-    <WeatherContext.Provider value={{ todayWeather, loading, city, setCity, setTodayWeather}}>
+    <WeatherContext.Provider value={{ todayWeather, loading, city, setCity, setTodayWeather, degrees, setDegrees}}>
       {children}
     </WeatherContext.Provider>
   );

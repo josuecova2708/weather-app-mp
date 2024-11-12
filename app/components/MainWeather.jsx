@@ -11,6 +11,9 @@ export default function MainWeather() {
     const { todayWeather, loading, setTodayWeather } = useContext(WeatherContext);
     const { getGeo, geolocation: geo } = useGeolocation()
     const [ubication, setUbication] = useState(false)
+    const { degrees } = useContext(WeatherContext)
+    const { setDegrees } = useContext(WeatherContext)
+
     const key = "3bc4c9f45cf04e7a74ac17d51146bf82";
     let lat = geo?.lat
     let lon = geo?.lon
@@ -65,8 +68,8 @@ export default function MainWeather() {
                     </div>
                     <div className="w-full text-center text-gray-300 gap-10 flex flex-col">
                         <h2 className="text-9xl">
-                            {todayWeather && todayWeather.main ? `${Math.round(todayWeather.main.temp)}º` : 'loading'}
-                            <span className="text-8xl">C</span>
+                            {todayWeather && todayWeather.main ? `${degrees?Math.round(Math.round(todayWeather.main.temp)*9/5+32) :Math.round(todayWeather.main.temp) }º` : 'loading'}
+                            <span className="text-8xl">{`${degrees?"F":"C"}`}</span>
                         </h2>
                         <p className="text-3xl">{description}</p>
                         <div className="flex mx-auto justify-around w-1/2 px-8">
